@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Sentiment Classifier</title>
+    <style>
+        body { font-family: sans-serif; background: #f4f4f4; text-align: center; padding: 50px; }
+        .upload-box {
+            border: 2px dashed #999; border-radius: 10px; padding: 30px; background: white;
+            width: 300px; margin: auto;
+        }
+        .upload-box input[type=file] { display: none; }
+        .upload-label {
+            display: inline-block; background-color: #28a745; color: white;
+            padding: 10px 20px; border-radius: 5px; cursor: pointer;
+        }
+        .result-box { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>🖼️ Upload Image to Classify Sentiment</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <div class="upload-box">
+            <label class="upload-label">
+                Click to upload
+                <input type="file" name="image" onchange="this.form.submit()">
+            </label>
+        </div>
+    </form>
+
+    {% if result %}
+        <div class="result-box">
+            <h3>Prediction Result:</h3>
+            <p>{{ result|safe }}</p>
+            <img src="{{ image_path }}" width="300">
+        </div>
+    {% endif %}
+</body>
+</html>
